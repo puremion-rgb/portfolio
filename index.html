@@ -1,0 +1,1316 @@
+<title>이지윤 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap"
+/>
+<style>
+  /* Layout: 넓은 여백의 한 칼럼. 작업 이미지가 주인공이고, 글은 짧게 3단 요약 */
+  :root {
+    --bg: #fafaf9;
+    --panel: #f0f0ee;
+    --ink: #111113;
+    --muted: #6b6b73;
+    --line: #e3e3e0;
+    --accent: #2d5bff;
+    --font-sans:
+      "Geist", "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic",
+      system-ui, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f0f11;
+      --panel: #18181b;
+      --ink: #ededee;
+      --muted: #9a9aa3;
+      --line: #26262b;
+      --accent: #7b98ff;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f0f11;
+    --panel: #18181b;
+    --ink: #ededee;
+    --muted: #9a9aa3;
+    --line: #26262b;
+    --accent: #7b98ff;
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+    padding-inline: clamp(16px, 5vw, 64px);
+    padding-block: 0;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* 상단 */
+  header {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-inline: calc(clamp(16px, 5vw, 64px) * -1);
+    padding-inline: clamp(16px, 5vw, 64px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  header.line {
+    border-color: var(--line);
+  }
+  header .page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: 64px;
+  }
+  .brand {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .brand span {
+    color: var(--muted);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+  header nav {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+  }
+  header nav a {
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+  header nav a:hover {
+    color: var(--ink);
+  }
+
+  /* 히어로 */
+  .hero {
+    padding-block: clamp(72px, 12vw, 140px) clamp(56px, 8vw, 96px);
+  }
+  .hello {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 28px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22a06b;
+  }
+  .hero h1 {
+    font-weight: 600;
+    font-size: clamp(32px, 5.4vw, 60px);
+    line-height: 1.22;
+    letter-spacing: -0.035em;
+    margin: 0;
+    max-width: 16em;
+    text-wrap: balance;
+  }
+  .hero h1 .soft {
+    color: var(--muted);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+    align-items: center;
+  }
+  .avatar {
+    width: clamp(150px, 20vw, 220px);
+    aspect-ratio: 1;
+    max-width: 100%;
+  }
+  .avatar svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    transition:
+      border-color 0.15s,
+      background 0.15s;
+  }
+  .pill-btn:hover {
+    border-color: var(--ink);
+  }
+  .pill-btn.solid {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .pill-btn.solid:hover {
+    opacity: 0.88;
+  }
+  .pill-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 40px;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-meta b {
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  /* 섹션 머리 */
+  .sec {
+    padding-block: 72px;
+    border-top: 1px solid var(--line);
+  }
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .sec-head h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  /* 프로젝트 */
+  .works {
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+  }
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .visual {
+    --tint: #e9ecff;
+    display: block;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--tint);
+    aspect-ratio: 16 / 8.5;
+    max-width: 100%;
+  }
+  .visual .frame {
+    position: absolute;
+    left: 50%;
+    top: 14%;
+    width: min(78%, 760px);
+    height: 100%;
+    transform: translateX(-50%);
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.04),
+      0 24px 60px -24px rgba(20, 20, 40, 0.28);
+    overflow: hidden;
+    color: #1a1a1f;
+  }
+  .visual:hover .frame {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  .visual .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .chrome {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    border-bottom: 1px solid #ececec;
+  }
+  .chrome i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #e2e2e2;
+  }
+  .chrome u {
+    text-decoration: none;
+    margin-left: 12px;
+    font: 11px/20px var(--font-mono);
+    color: #8a8a92;
+    background: #f4f4f5;
+    border-radius: 6px;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ui {
+    padding: 3.2% 3.4%;
+    height: calc(100% - 34px);
+    font-size: clamp(8px, 1.1vw, 12px);
+    line-height: 1.45;
+  }
+  .visual .award {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #1a1a1f;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+  .visual .award::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #e0a800;
+  }
+
+  .work-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px 24px;
+  }
+  .work-title h3 {
+    margin: 0;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .work-title h3 span {
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .visit {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 2px;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px
+      no-repeat;
+    transition: background-size 0.25s;
+  }
+  .visit:hover {
+    background-size: 100% 1px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .visit svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+  }
+  .edu {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 15px;
+  }
+  .edu span {
+    color: var(--muted);
+  }
+  .case {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .case > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .case p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .case ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .case ul li::before {
+    content: "– ";
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 4px 16px;
+    font-size: 15px;
+    margin: 0;
+  }
+  .facts dt {
+    color: var(--muted);
+  }
+  .facts dd {
+    margin: 0;
+  }
+
+  /* 목업 공통 (정적) */
+  .row {
+    display: flex;
+    gap: 3%;
+    height: 100%;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+  .bar-s {
+    height: 8px;
+    border-radius: 4px;
+    background: #ececef;
+  }
+  .h {
+    font-weight: 600;
+    font-size: 1.15em;
+  }
+  .sub {
+    color: #8a8a92;
+  }
+  .msg {
+    padding: 7px 10px;
+    border-radius: 10px;
+    max-width: 88%;
+  }
+  .msg.me {
+    align-self: flex-end;
+    background: #1a1a1f;
+    color: #fff;
+    border-bottom-right-radius: 3px;
+  }
+  .msg.ai {
+    background: #f2f2f4;
+    border-bottom-left-radius: 3px;
+  }
+  .map {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #eef3ee;
+  }
+  .map svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .stop {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f2;
+  }
+  .stop b {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 0.85em;
+    flex: none;
+  }
+  .cafe {
+    padding: 8px 10px;
+    border: 1px solid #ededf0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .seat-badge {
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.9em;
+    white-space: nowrap;
+  }
+  .seats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .seats i {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    background: #ececef;
+  }
+  .pola {
+    background: #fff;
+    padding: 6px 6px 18px;
+    border-radius: 3px;
+    box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.25);
+    position: relative;
+  }
+  .pola div {
+    aspect-ratio: 1;
+    border-radius: 2px;
+  }
+  .pola span {
+    position: absolute;
+    bottom: 3px;
+    left: 7px;
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+  .moods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .moods span {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #f2f2f4;
+  }
+  .post {
+    border: 1px solid #ededf0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .post div {
+    aspect-ratio: 16/9;
+  }
+  .post p {
+    margin: 0;
+    padding: 6px 8px 8px;
+  }
+
+  /* 그 밖의 작업 */
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) auto;
+    gap: 24px;
+    align-items: baseline;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .item .links {
+    gap: 16px;
+    font-size: 14px;
+  }
+  .item:first-child {
+    border-top: 1px solid var(--line);
+  }
+  .item h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .item p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  /* 소개 */
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 88px);
+  }
+  .about .lead {
+    font-size: clamp(19px, 2.1vw, 23px);
+    line-height: 1.6;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+  }
+  .about .lead + p {
+    color: var(--muted);
+    margin: 0;
+    max-width: 36em;
+  }
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .points {
+    list-style: none;
+    margin: 36px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .points li {
+    padding-block: 18px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .points b {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .points p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 36em;
+  }
+  .side h3 {
+    margin: 0 0 12px;
+  }
+  .side ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .side li {
+    font-size: 14px;
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .prize {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 15px;
+  }
+  .prize span {
+    color: var(--muted);
+  }
+
+  /* 타임라인 */
+  .tl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tl li {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr) auto;
+    gap: 24px;
+    padding-block: 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+    align-items: baseline;
+  }
+  .tl li:first-child {
+    border-top: 1px solid var(--line);
+  }
+  .tl .when {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .tl .who {
+    color: var(--muted);
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  /* 연락처 */
+  .contact {
+    padding-block: 96px 56px;
+    border-top: 1px solid var(--line);
+  }
+  .contact p {
+    color: var(--muted);
+    margin: 0 0 20px;
+  }
+  .mail-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 24px;
+  }
+  .mail {
+    font-size: clamp(28px, 5.4vw, 60px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+    min-width: 0;
+    user-select: all;
+  }
+  .copy {
+    font: 500 14px var(--font-sans);
+    color: var(--bg);
+    background: var(--ink);
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .copy:hover {
+    opacity: 0.85;
+  }
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    padding-block: 28px 40px;
+    border-top: 1px solid var(--line);
+    margin-top: 72px;
+  }
+
+  /* 처음 로드될 때 한 번만 살짝 */
+  .hero > *,
+  .hero-grid > * {
+    animation: up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero-grid > *:nth-child(2) {
+    animation-delay: 0.12s;
+  }
+  .hero > *:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+  .hero > *:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+  @keyframes up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  @media (max-width: 820px) {
+    header nav {
+      gap: 18px;
+    }
+    header nav a.hide-sm {
+      display: none;
+    }
+    .case {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+    }
+    .about {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+    .avatar {
+      order: -1;
+      width: 120px;
+    }
+    .item {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .item p {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    .tl li {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 4px 16px;
+    }
+    .tl .when {
+      grid-column: 1 / -1;
+    }
+    .visual {
+      aspect-ratio: 4 / 3;
+    }
+    .visual .frame {
+      width: 88%;
+      top: 16%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+</style>
+
+<header id="hdr">
+  <div class="page">
+    <a href="#top" class="brand">이지윤<span>UI/UX · Frontend</span></a>
+    <nav aria-label="섹션">
+      <a href="#work">Work</a>
+      <a href="#about" class="hide-sm">About</a>
+      <a href="#contact">Contact</a>
+      <a id="navGh" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page" id="top">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="hello"><span class="dot"></span><span id="hello"></span></p>
+        <h1 id="headline"></h1>
+        <div class="hero-links" id="heroLinks"></div>
+      </div>
+      <div
+        class="avatar"
+        id="avatar"
+        role="img"
+        aria-label="이지윤 캐릭터 일러스트"
+      ></div>
+    </div>
+    <div class="hero-meta" id="heroMeta"></div>
+  </section>
+
+  <section class="sec" id="work">
+    <div class="sec-head">
+      <h2>Selected Work</h2>
+      <span class="mono" id="workCount"></span>
+    </div>
+    <div class="works" id="works"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Other Work</h2>
+      <span class="mono">수업 과제</span>
+    </div>
+    <div class="list" id="others"></div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about">
+      <div>
+        <p class="lead" id="aboutLead"></p>
+        <p id="aboutBody"></p>
+        <ol class="points" id="points"></ol>
+      </div>
+      <div class="side" id="side"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>2026 Timeline</h2></div>
+    <ol class="tl" id="tl"></ol>
+  </section>
+
+  <section class="contact" id="contact">
+    <p id="contactLine"></p>
+    <div class="mail-row">
+      <span class="mail" id="email"></span>
+      <button class="copy" id="copy" type="button">이메일 복사</button>
+      <a class="pill-btn" id="contactGh" target="_blank" rel="noopener"
+        >GitHub ↗</a
+      >
+    </div>
+    <footer>
+      <span class="mono" id="foot"></span
+      ><a class="mono" href="#top">Back to top ↑</a>
+    </footer>
+  </section>
+</main>
+
+<script>
+  /* =====================================================================
+   ✏️  사이트 내용은 이 DATA 안에서만 고치면 됩니다.
+   - 프로젝트를 빼려면 { ... } 한 덩어리를 통째로 지우세요. (뒤 쉼표 포함)
+   - image 에 스크린샷 주소(또는 같은 폴더의 파일명)를 넣으면
+     그림 대신 실제 화면이 들어갑니다. 예) image: "path.png"
+   ===================================================================== */
+  const DATA = {
+    name: "이지윤",
+    role: "UI/UX Design · Frontend",
+    github: "https://github.com/puremion-rgb",
+    hello: "안녕하세요, 이지윤입니다.",
+    headline:
+      '사용자의 불편에서 출발해 <span class="soft">화면을 설계하고, 코드로 완성합니다.</span>',
+    heroMeta: [
+      { k: "Now", v: "영진직업전문학교 UI/UX · 웹앱 과정" },
+      { k: "Stack", v: "React · Next.js · TypeScript" },
+      { k: "Award", v: "제18회 송암전 우수상" },
+    ],
+    projects: [
+      {
+        name: "PATH",
+        sub: "AI 일본 여행 플래너",
+        kind: "chat",
+        tint: "#fde8e6",
+        tintDark: "#3a2324",
+        url: "wa26bteam01.yjjob.kr",
+        link: "https://wa26bteam01.yjjob.kr/splash",
+        problem:
+          "여행 일정은 처음 짜는 것도, 현지에서 바꾸는 것도 번거롭습니다. 동선과 교통편을 따로 찾아야 하기 때문이에요.",
+        solution: [
+          "AI와 채팅하며 일정 완성",
+          "말 한마디로 일정 즉시 수정",
+          "실시간 교통 기반 동선 추천",
+          "지도에서 위치 · 교통 확인",
+        ],
+        period: "2026.09.01 – 09.30",
+        team: "4명",
+        role: "UI/UX 디자인 · 프론트엔드",
+        tools: "React, TypeScript, Google Gemini, Google Maps API, MySQL",
+        image: "",
+        github: "https://github.com/team-path/path-app",
+        figma:
+          "https://www.figma.com/design/UMFFJJF0zPpLyxHYHRZlCA/path?node-id=2-3",
+      },
+      {
+        name: "CafeON",
+        sub: "실시간 카페 좌석 확인 서비스",
+        kind: "seat",
+        tint: "#fbefd9",
+        tintDark: "#352c1c",
+        url: "team-project-five-pink.vercel.app",
+        link: "https://team-project-five-pink.vercel.app/",
+        problem:
+          "카페에 도착해서야 자리가 없다는 걸 알게 됩니다. 방문 전에 빈자리를 확인할 방법이 없었어요.",
+        solution: [
+          "지도에서 주변 카페 잔여 좌석 확인",
+          "운영 정보와 길찾기 제공",
+          "점주용 좌석 · 예약 · 메뉴 관리",
+        ],
+        period: "2026.08.03 – 08.31",
+        team: "4명",
+        role: "UI/UX 디자인 · 프론트엔드",
+        tools: "Next.js, REST API, TypeScript",
+        image: "",
+        github: "https://github.com/puremion-rgb/team-project",
+        figma:
+          "https://www.figma.com/design/gdRgoGaJ1kiDatDeIeVWH5/cafeon?node-id=3-368",
+      },
+      {
+        name: "MoodBook",
+        sub: "AI 감정 독서 일기",
+        kind: "book",
+        tint: "#ece6fb",
+        tintDark: "#2a2538",
+        award: "송암전 우수상",
+        url: "bit.ly/4eim18t",
+        link: "http://bit.ly/4eim18t",
+        problem:
+          "독서 기록은 쉽게 끊기고, 책을 읽으며 느낀 감정은 기록으로 남지 않습니다.",
+        solution: [
+          "Groq AI가 8가지 감정으로 자동 분류",
+          "감정에 맞는 음악 추천",
+          "감정별 폴라로이드 책장 자동 수집",
+          "독서 리포트 · 미기록 알림 메일",
+        ],
+        period: "2026.05.30 – 06.11",
+        team: "1명 (개인)",
+        role: "기획 · UI/UX 디자인 · 개발 전체",
+        tools: "Google Apps Script, Kakao Book API, Groq AI",
+        image: "",
+        github: "https://github.com/puremion-rgb/MoodBook",
+        figma: "",
+      },
+      {
+        name: "JoinUs",
+        sub: "블로그형 웹사이트",
+        kind: "blog",
+        tint: "#e2f3ee",
+        tintDark: "#1d3029",
+        url: "puremion.dothome.co.kr",
+        link: "https://puremion.dothome.co.kr/",
+        problem:
+          "기본 블로그 기능을 갖춘 사이트를 만들고, 그 위에 가능한 한 다양한 기능을 직접 구현해 보는 것이 목표였습니다.",
+        solution: [
+          "블로그와 동일한 글 작성 · 목록 기능",
+          "여러 부가 기능 추가 구현",
+          "프론트엔드부터 백엔드까지 직접 구현",
+        ],
+        period: "2026.06.01 – 07.31",
+        team: "2명",
+        role: "UI/UX 디자인 · 프론트엔드 · 백엔드",
+        tools: "PHP, MySQL, 닷홈 호스팅 배포, FileZilla (FTP)",
+        image: "",
+        github: "",
+        figma: "",
+      },
+    ],
+    others: [
+      {
+        name: "영화 소개 사이트",
+        desc: "TMDB API로 영화 정보를 불러와 보여 주는 사이트",
+        tools: "Next.js · TMDB API",
+        link: "https://tmdb-nextjs-nu.vercel.app/",
+        github: "https://github.com/puremion-rgb/TMDB_nextjs",
+      },
+      {
+        name: "개인 블로그",
+        desc: "Supabase로 글 목록과 상세 페이지를 구현한 블로그",
+        tools: "Next.js · Supabase",
+        link: "https://supabase-blog-red.vercel.app/posts",
+        github: "https://github.com/puremion-rgb/supabase_blog",
+      },
+    ],
+    education: {
+      title: "생성형 AI 기반 UI/UX디자인 & 웹앱 콘텐츠 개발자 양성과정",
+      org: "영진직업전문학교 · 2026.03 – 2026.10 (수료 예정)",
+    },
+    aboutLead: "디자인과 개발 사이의 간격을 줄이는 사람이 되고 싶습니다.",
+    aboutBody:
+      "Figma에서 그린 화면이 실제 서비스에서도 같은 모습으로 동작할 때 좋은 경험이 완성된다고 생각해요. 그래서 디자인에서 멈추지 않고 직접 코드로 옮깁니다. 영진직업전문학교에서 생성형 AI 기반 UI/UX · 웹앱 과정을 들으며 다섯 달 동안 6개의 웹 서비스를 만들었습니다.",
+    aboutPoints: [
+      {
+        title: "문제부터 정의합니다",
+        desc: "화면을 그리기 전에 사용자가 어디서 불편한지 먼저 적습니다. CafeON은 ‘도착해서야 자리가 없다는 걸 안다’는 한 문장에서 시작했어요.",
+      },
+      {
+        title: "디자인부터 배포까지 직접 합니다",
+        desc: "모든 프로젝트에서 UI/UX 디자인과 프론트엔드를 맡았고, JoinUs에서는 PHP와 MySQL로 백엔드와 배포까지 해냈습니다.",
+      },
+      {
+        title: "AI를 서비스 안에 녹입니다",
+        desc: "PATH의 대화형 일정 수정, MoodBook의 감정 분류처럼 AI가 사용자의 수고를 직접 덜어 주는 기능을 설계합니다. MoodBook은 송암전 우수상을 받았어요.",
+      },
+    ],
+    skills: [
+      {
+        title: "Frontend",
+        items: ["React", "Next.js", "TypeScript", "REST API"],
+      },
+      {
+        title: "Backend · Deploy",
+        items: [
+          "PHP",
+          "MySQL",
+          "Supabase",
+          "Vercel",
+          "닷홈",
+          "FileZilla (FTP)",
+        ],
+      },
+      { title: "Design", items: ["Figma"] },
+      {
+        title: "AI · API",
+        items: [
+          "Google Gemini",
+          "Groq AI",
+          "Google Maps API",
+          "Kakao Book API",
+          "TMDB API",
+          "Google Apps Script",
+        ],
+      },
+    ],
+    award: {
+      title: "제18회 송암전 우수상",
+      org: "영진직업전문학교 · MoodBook",
+    },
+    contactLine: "함께 일하고 싶거나 프로젝트가 궁금하다면 편하게 연락 주세요.",
+    email: "puremion@gmail.com",
+  };
+  /* ===================================================================== */
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) =>
+    String(s).replace(
+      /[&<>"]/g,
+      (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+    );
+
+  $("hello").textContent = DATA.hello;
+  $("headline").innerHTML = DATA.headline;
+  const GH =
+    '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
+  $("navGh").href = DATA.github;
+  $("heroLinks").innerHTML =
+    `<a class="pill-btn solid" href="#work">프로젝트 보기 ↓</a><a class="pill-btn" href="${esc(DATA.github)}" target="_blank" rel="noopener">${GH}GitHub</a><a class="pill-btn" href="#contact">연락하기</a>`;
+
+  /* 캐릭터 일러스트 (직접 그린 SVG, 색은 여기서 바꿀 수 있어요) */
+  $("avatar").innerHTML =
+    `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="100" fill="#dfe6ff"/>
+  <clipPath id="av"><circle cx="100" cy="100" r="100"/></clipPath>
+  <g clip-path="url(#av)">
+    <path d="M38 200c4-34 30-52 62-52s58 18 62 52z" fill="#2d5bff"/>
+    <path d="M86 146h28v14c0 8-28 8-28 0z" fill="#f2c9ad"/>
+    <path d="M100 150c-8 0-14-3-14-3v6c4 3 9 4 14 4s10-1 14-4v-6s-6 3-14 3z" fill="#e3b597"/>
+    <path d="M52 92c0-34 21-54 48-54s48 20 48 54c0 22-4 44-10 54H62c-6-10-10-32-10-54z" fill="#2a2230"/>
+    <ellipse cx="100" cy="98" rx="36" ry="42" fill="#f7d6bd"/>
+    <path d="M62 86c6-26 22-36 40-36 20 0 34 12 38 34-14-2-30-8-40-20-8 12-22 20-38 22z" fill="#2a2230"/>
+    <circle cx="86" cy="100" r="3.6" fill="#2a2230"/><circle cx="114" cy="100" r="3.6" fill="#2a2230"/>
+    <path d="M92 118c5 4 11 4 16 0" stroke="#c9765e" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <ellipse cx="76" cy="112" rx="6" ry="3.5" fill="#f5a9a0" opacity=".6"/><ellipse cx="124" cy="112" rx="6" ry="3.5" fill="#f5a9a0" opacity=".6"/>
+    <path d="M70 188h60l6-24H64z" fill="#e8ecf5"/><rect x="92" y="172" width="16" height="4" rx="2" fill="#b7c0d6"/>
+  </g></svg>`;
+  $("heroMeta").innerHTML = DATA.heroMeta
+    .map(
+      (m) =>
+        `<div><span class="mono">${esc(m.k)}</span><b>${esc(m.v)}</b></div>`,
+    )
+    .join("");
+  $("workCount").textContent = DATA.projects.length + " projects";
+
+  /* 프로젝트 화면 일러스트 (움직이지 않는 정적 목업) */
+  function mock(p) {
+    if (p.kind === "chat")
+      return `<div class="row">
+    <div class="col" style="flex:1"><div class="h">교토 2박 3일</div>
+      <div class="msg me">사찰 위주로 일정 짜줘</div>
+      <div class="msg ai">청수사 → 산넨자카 → 기온 순으로 동선을 짰어요.</div>
+      <div class="msg me">둘째 날 오전은 아라시야마로 바꿔줘</div>
+      <div class="msg ai">바꿨어요. 다음 열차는 6분 후 출발해요.</div></div>
+    <div class="col" style="flex:1.2"><div class="map" style="flex:1"><svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path d="M0 62 L100 48 M30 0 L42 100 M70 0 L64 100" stroke="#dde6dd" stroke-width="4" fill="none"/>
+      <path d="M16 78 C 30 62, 44 66, 52 46 S 74 26, 84 18" fill="none" stroke="#e5484d" stroke-width="1.6" stroke-dasharray="3 2.5"/>
+      <circle cx="16" cy="78" r="3.2" fill="#e5484d"/><circle cx="52" cy="46" r="3.2" fill="#e5484d"/><circle cx="84" cy="18" r="3.2" fill="#e5484d"/></svg></div>
+      <div class="stop"><b style="background:#e5484d">1</b>청수사 <span class="sub">· 09:30</span></div>
+      <div class="stop"><b style="background:#e5484d">2</b>산넨자카 <span class="sub">· 11:00</span></div></div></div>`;
+    if (p.kind === "seat") {
+      const free = [1, 4, 8, 9, 14, 20, 23];
+      let s = "";
+      for (let k = 0; k < 24; k++)
+        s += `<i style="${free.includes(k) ? "background:#d9930d" : ""}"></i>`;
+      return `<div class="row">
+      <div class="col" style="flex:1"><div class="h">내 주변 카페</div>
+        <div class="cafe"><span>카페 온기<br><span class="sub">도보 4분</span></span><span class="seat-badge" style="background:#fdf1d8;color:#9a6600">7석 남음</span></div>
+        <div class="cafe"><span>브루잉 랩<br><span class="sub">도보 7분</span></span><span class="seat-badge" style="background:#f2f2f4;color:#8a8a92">2석 남음</span></div>
+        <div class="cafe"><span>숲속 책방카페<br><span class="sub">도보 9분</span></span><span class="seat-badge" style="background:#fdf1d8;color:#9a6600">11석 남음</span></div></div>
+      <div class="col" style="flex:1"><div class="h">카페 온기 · 좌석</div><div class="seats">${s}</div>
+        <div class="sub">● 빈자리 7 / 24 · 실시간</div></div></div>`;
+    }
+    if (p.kind === "book")
+      return `<div class="col" style="height:100%">
+      <div class="h">나의 감정 책장</div>
+      <div class="moods"><span>기쁨</span><span style="background:#1a1a1f;color:#fff">설렘</span><span>평온</span><span>슬픔</span><span>불안</span><span>감동</span><span>그리움</span><span>분노</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:6px">
+        ${[
+          ["#c9b6f5", "설렘"],
+          ["#a9d3f0", "평온"],
+          ["#f7c8a8", "기쁨"],
+          ["#d8d0e8", "그리움"],
+        ]
+          .map(
+            ([c, t]) =>
+              `<div class="pola"><div style="background:${c}"></div><span>${t}</span></div>`,
+          )
+          .join("")}
+      </div></div>`;
+    return `<div class="col" style="height:100%"><div class="h">최근 글</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      ${[
+        ["#bfe5d8", "여름 프로젝트 회고"],
+        ["#d6e4f5", "로그인 기능 구현기"],
+        ["#efe2c8", "배포하며 배운 것"],
+      ]
+        .map(
+          ([c, t]) =>
+            `<div class="post"><div style="background:${c}"></div><p>${t}<br><span class="sub">댓글 3 · 좋아요 12</span></p></div>`,
+        )
+        .join("")}
+    </div></div>`;
+  }
+
+  $("works").innerHTML = DATA.projects
+    .map(
+      (p, i) => `
+  <article class="work">
+    <a class="visual" href="${esc(p.link)}" target="_blank" rel="noopener" style="--tint:${esc(p.tint)}" data-tint="${esc(p.tint)}" data-dark="${esc(p.tintDark)}" aria-label="${esc(p.name)} 사이트 열기">
+      ${p.award ? `<span class="award">${esc(p.award)}</span>` : ""}
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>${esc(p.url)}</u></div>
+        ${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.name)} 화면">` : `<div class="ui">${mock(p)}</div>`}</div>
+    </a>
+    <div class="work-title">
+      <h3>${esc(p.name)} <span>— ${esc(p.sub)}</span></h3>
+      <div class="links">
+        <a class="visit" href="${esc(p.link)}" target="_blank" rel="noopener">사이트 보기 ↗</a>
+        ${p.github ? `<a class="visit" href="${esc(p.github)}" target="_blank" rel="noopener">${GH}GitHub ↗</a>` : ""}
+        ${p.figma ? `<a class="visit" href="${esc(p.figma)}" target="_blank" rel="noopener">Figma 디자인 ↗</a>` : ""}
+      </div>
+    </div>
+    <div class="case">
+      <div><span class="mono">Problem</span><p>${esc(p.problem)}</p></div>
+      <div><span class="mono">Solution</span><ul>${p.solution.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></div>
+      <div><span class="mono">Details</span><dl class="facts"><dt>역할</dt><dd>${esc(p.role)}</dd><dt>기간</dt><dd>${esc(p.period)}</dd><dt>인원</dt><dd>${esc(p.team)}</dd>${p.tools ? `<dt>도구</dt><dd>${esc(p.tools)}</dd>` : ""}</dl></div>
+    </div>
+  </article>`,
+    )
+    .join("");
+
+  /* 다크 모드일 때 카드 배경색 교체 */
+  function tint() {
+    const dark = getComputedStyle(
+      document.documentElement,
+    ).colorScheme.includes("dark");
+    document
+      .querySelectorAll(".visual")
+      .forEach((v) =>
+        v.style.setProperty("--tint", dark ? v.dataset.dark : v.dataset.tint),
+      );
+  }
+  tint();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", tint);
+  new MutationObserver(tint).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
+  $("others").innerHTML = DATA.others
+    .map(
+      (o) => `
+  <div class="item">
+    <h4>${esc(o.name)}</h4><p>${esc(o.desc)} <span class="mono" style="text-transform:none">· ${esc(o.tools)}</span></p>
+    <div class="links"><a class="visit" href="${esc(o.link)}" target="_blank" rel="noopener">사이트 ↗</a>${o.github ? `<a class="visit" href="${esc(o.github)}" target="_blank" rel="noopener">GitHub ↗</a>` : ""}</div>
+  </div>`,
+    )
+    .join("");
+
+  $("aboutLead").textContent = DATA.aboutLead;
+  $("aboutBody").textContent = DATA.aboutBody;
+  $("points").innerHTML = DATA.aboutPoints
+    .map((p) => `<li><b>${esc(p.title)}</b><p>${esc(p.desc)}</p></li>`)
+    .join("");
+  $("side").innerHTML =
+    DATA.skills
+      .map(
+        (s) =>
+          `<div><h3 class="mono">${esc(s.title)}</h3><ul>${s.items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>`,
+      )
+      .join("") +
+    `<div><h3 class="mono">Education</h3><div class="edu"><b>${esc(DATA.education.title)}</b><span>${esc(DATA.education.org)}</span></div></div>` +
+    `<div><h3 class="mono">Recognition</h3><div class="prize"><b>${esc(DATA.award.title)}</b><span>${esc(DATA.award.org)}</span></div></div>`;
+
+  $("tl").innerHTML = [...DATA.projects]
+    .sort((a, b) => b.period.localeCompare(a.period))
+    .map(
+      (p) =>
+        `<li><span class="when">${esc(p.period)}</span><span><b>${esc(p.name)}</b> <span style="color:var(--muted)">${esc(p.sub)}</span>${p.award ? ` · <span style="color:var(--accent)">${esc(p.award)}</span>` : ""}</span><span class="who">${esc(p.team)}</span></li>`,
+    )
+    .join("");
+
+  $("contactLine").textContent = DATA.contactLine;
+  $("email").textContent = DATA.email;
+  $("contactGh").href = DATA.github;
+  $("foot").textContent =
+    `© ${new Date().getFullYear()} ${DATA.name} · ${DATA.role}`;
+  $("copy").addEventListener("click", () => {
+    const btn = $("copy");
+    const done = (t) => {
+      btn.textContent = t;
+      setTimeout(() => (btn.textContent = "이메일 복사"), 1800);
+    };
+    const sel = () => {
+      const r = document.createRange();
+      r.selectNodeContents($("email"));
+      const s = getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      done("선택됨 · Ctrl+C");
+    };
+    try {
+      navigator.clipboard
+        .writeText(DATA.email)
+        .then(() => done("복사했어요"), sel);
+    } catch (e) {
+      sel();
+    }
+  });
+
+  const hdr = $("hdr");
+  addEventListener("scroll", () => hdr.classList.toggle("line", scrollY > 8), {
+    passive: true,
+  });
+</script>
