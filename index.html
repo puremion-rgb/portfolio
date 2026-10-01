@@ -200,27 +200,6 @@
   .hero-meta div { display: flex; flex-direction: column; gap: 4px; }
   .hero-meta b { font-weight: 500; font-size: 15px; }
 
-  /* 흐르는 기술 스택 */
-  .marquee {
-    margin-inline: calc(var(--gutter) * -1);
-    overflow: hidden;
-    padding-block: 18px;
-    border-block: 1px solid var(--line);
-    background: color-mix(in srgb, var(--panel) 55%, transparent);
-    transform: rotate(-1.2deg);
-    margin-block: 8px 24px;
-  }
-  .marquee .track { display: flex; width: max-content; animation: slide 40s linear infinite; }
-  .marquee:hover .track { animation-play-state: paused; }
-  .marquee span {
-    display: flex; align-items: center; gap: 36px; padding-right: 36px;
-    font-weight: 600; font-size: clamp(20px, 2.8vw, 30px); letter-spacing: -0.03em; white-space: nowrap;
-    color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 45%, transparent);
-  }
-  .marquee span:nth-child(3n + 1) { color: var(--ink); -webkit-text-stroke: 0; }
-  .marquee span::after { content: "✦"; font-size: 0.55em; color: var(--c2); -webkit-text-stroke: 0; }
-  @keyframes slide { to { transform: translateX(-50%); } }
-
   /* 섹션 머리 */
   .sec { padding-block: 88px 72px; border-top: 1px solid var(--line); }
   .sec.no-line { border-top: 0; }
@@ -362,7 +341,7 @@
   .item {
     --hue: var(--c1);
     position: relative;
-    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) auto;
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) 180px;
     gap: 24px; align-items: baseline;
     padding: 24px 16px; margin-inline: -16px; border-radius: 14px;
     border-bottom: 1px solid var(--line);
@@ -373,7 +352,7 @@
   .item h4::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--hue); transition: transform 0.3s var(--ease); }
   .item:hover h4::before { transform: rotate(45deg) scale(1.2); }
   .item p { margin: 0; color: var(--muted); font-size: 15px; }
-  .item .links { gap: 16px; font-size: 14px; }
+  .item .links { gap: 16px; font-size: 14px; justify-content: flex-end; }
 
   /* 소개 */
   .about { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); }
@@ -490,12 +469,8 @@
     </div>
     <div class="hero-meta" id="heroMeta"></div>
   </section>
-</main>
 
-<div class="marquee" aria-hidden="true"><div class="track" id="marquee"></div></div>
-
-<main class="page">
-  <section class="sec no-line" id="work">
+  <section class="sec" id="work">
     <div class="sec-head rv">
       <div><div class="tag">01 — SELECTED WORK</div><h2>대표 <span class="grad-text">프로젝트</span></h2></div>
       <span class="mono" id="workCount"></span>
@@ -664,7 +639,7 @@
           "여러 부가 기능 추가 구현",
           "프론트엔드부터 백엔드까지 직접 구현",
         ],
-        period: "2026.06.01 – 07.31",
+        period: "2026.06.11 – 07.24",
         team: "2명",
         role: "UI/UX 디자인 · 프론트엔드 · 백엔드",
         tools: "PHP, MySQL, 닷홈 호스팅 배포, FileZilla (FTP)",
@@ -689,6 +664,30 @@
         tools: "Next.js · Supabase",
         link: "https://supabase-blog-red.vercel.app/posts",
         github: "https://github.com/puremion-rgb/supabase_blog",
+      },
+      {
+        name: "모바일 청첩장 만들기",
+        color: "#f59e0b",
+        desc: "14개 섹션을 컴포넌트로 나눈 모바일 청첩장. D-day 카운트다운, 갤러리, 방명록, RSVP 모달 구현",
+        tools: "React · Vite",
+        link: "https://wedding-omega-black.vercel.app/",
+        github: "https://github.com/puremion-rgb/wedding",
+      },
+      {
+        name: "시나모롤 카페",
+        color: "#8b5cf6",
+        desc: "카페 사이트를 참고해 만든 캐릭터 테마 카페 홍보 사이트",
+        tools: "HTML · CSS · GitHub Pages",
+        link: "https://puremion-rgb.github.io/cinnamoroll_home/",
+        github: "https://github.com/puremion-rgb/cinnamoroll_home",
+      },
+      {
+        name: "Shopping Shot",
+        color: "#14b8a6",
+        desc: "쇼핑몰 상품 이미지를 우클릭 한 번으로 스크랩해 사이드 패널 장바구니에 모으는 크롬 확장 프로그램",
+        tools: "Manifest V3 · Vanilla JS",
+        link: "",
+        github: "https://github.com/puremion-rgb/background_screen",
       },
     ],
     education: {
@@ -779,10 +778,6 @@
     .map((m) => `<div><span class="mono">${esc(m.k)}</span><b>${esc(m.v)}</b></div>`)
     .join("");
 
-  /* ---------- 흐르는 기술 스택 ---------- */
-  const stack = DATA.skills.flatMap((s) => s.items);
-  $("marquee").innerHTML = [...stack, ...stack].map((s) => `<span>${esc(s)}</span>`).join("");
-
   /* ---------- 프로젝트 화면 일러스트 ---------- */
   function mock(p) {
     if (p.kind === "chat")
@@ -871,7 +866,7 @@
       (o) => `
   <div class="item rv" style="--hue:${esc(o.color || "var(--c1)")}">
     <h4>${esc(o.name)}</h4><p>${esc(o.desc)} <span class="mono" style="text-transform:none">· ${esc(o.tools)}</span></p>
-    <div class="links"><a class="visit" href="${esc(o.link)}" target="_blank" rel="noopener">사이트 ↗</a>${o.github ? `<a class="visit" href="${esc(o.github)}" target="_blank" rel="noopener">GitHub ↗</a>` : ""}</div>
+    <div class="links">${o.link ? `<a class="visit" href="${esc(o.link)}" target="_blank" rel="noopener">사이트 ↗</a>` : `<span class="mono" style="text-transform:none">크롬 확장</span>`}${o.github ? `<a class="visit" href="${esc(o.github)}" target="_blank" rel="noopener">GitHub ↗</a>` : ""}</div>
   </div>`,
     )
     .join("");
