@@ -21,7 +21,7 @@
     --c3: #8b5cf6;
     --c4: #14b8a6;
     --grad: linear-gradient(100deg, var(--c1), var(--c2) 30%, var(--c4) 62%, var(--c3));
-    --aurora: 0.3;
+    --hl: #ffe27a;
     --font-sans: "Geist", "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
     --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
     --gutter: clamp(16px, 5vw, 64px);
@@ -40,7 +40,7 @@
       --c2: #ffb547;
       --c3: #b38cff;
       --c4: #3fe0c5;
-      --aurora: 0.2;
+      --hl: rgba(255, 200, 60, .35);
       color-scheme: dark;
     }
   }
@@ -56,7 +56,7 @@
     --c2: #ffb547;
     --c3: #b38cff;
     --c4: #3fe0c5;
-    --aurora: 0.2;
+    --hl: rgba(255, 200, 60, .35);
     color-scheme: dark;
   }
 
@@ -101,7 +101,7 @@
   .progress {
     position: fixed; top: 0; left: 0; z-index: 50;
     width: 100%; height: 3px;
-    background: var(--grad);
+    background: var(--ink);
     transform-origin: 0 50%;
     transform: scaleX(0);
   }
@@ -122,61 +122,53 @@
   header.line { border-color: var(--line); }
   header .page { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
   .brand { font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; }
-  .brand i { width: 10px; height: 10px; border-radius: 3px; background: var(--grad); background-size: 250% 100%; animation: flow 6s linear infinite; }
+  .brand i { width: 10px; height: 10px; border-radius: 3px; background: var(--ink); }
   .brand span { color: var(--muted); font-weight: 400; }
   header nav { display: flex; gap: 4px; font-size: 14px; }
   header nav a { color: var(--muted); padding: 6px 12px; border-radius: 999px; transition: color 0.15s, background 0.15s; }
   header nav a:hover, header nav a.on { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
 
-  /* 히어로 */
-  .hero { position: relative; isolation: isolate; padding-block: clamp(72px, 12vw, 140px) clamp(56px, 8vw, 96px); }
-  .aurora {
-    position: absolute; z-index: -1; pointer-events: none; overflow: hidden;
-    inset: -64px calc(var(--gutter) * -1) 0;
-    -webkit-mask-image: linear-gradient(#000 50%, transparent);
-    mask-image: linear-gradient(#000 50%, transparent);
-  }
-  .aurora i {
-    position: absolute; border-radius: 50%;
-    filter: blur(80px); opacity: var(--aurora);
-    animation: drift 16s ease-in-out infinite alternate;
-  }
-  .aurora i:nth-child(1) { width: min(46vw, 560px); aspect-ratio: 1; background: var(--c1); top: -12%; left: -6%; }
-  .aurora i:nth-child(2) { width: min(40vw, 480px); aspect-ratio: 1; background: var(--c3); top: -4%; right: -4%; animation-duration: 20s; animation-delay: -6s; }
-  .aurora i:nth-child(3) { width: min(34vw, 420px); aspect-ratio: 1; background: var(--c4); top: 30%; left: 34%; animation-duration: 23s; animation-delay: -12s; }
-  .aurora i:nth-child(4) { width: min(26vw, 320px); aspect-ratio: 1; background: var(--c2); top: 40%; left: 4%; animation-duration: 18s; animation-delay: -3s; }
-  @keyframes drift { to { transform: translate(7vw, 5vh) scale(1.18); } }
-
-  .hello { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--muted); margin: 0 0 28px; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: #22a06b; animation: ping 2s infinite; }
-  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(34,160,107,.55); } 100% { box-shadow: 0 0 0 10px rgba(34,160,107,0); } }
+  /* 히어로: 장식 대신 실제 작업 화면과 구체적인 문장으로 */
+  .hero { position: relative; padding-block: clamp(64px, 10vw, 120px) clamp(48px, 7vw, 80px); }
+  .eyebrow { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 28px; }
+  .eyebrow span + span::before { content: "/"; margin-right: 14px; color: var(--line); }
   .hero h1 {
-    font-weight: 600;
-    font-size: clamp(32px, 5.4vw, 60px);
-    line-height: 1.22;
-    letter-spacing: -0.035em;
+    font-weight: 700;
+    font-size: clamp(34px, 5.2vw, 62px);
+    line-height: 1.2;
+    letter-spacing: -0.045em;
     margin: 0;
-    max-width: 16em;
     text-wrap: balance;
   }
-  .hero h1 .soft { color: var(--muted); }
-  .typer { margin: 22px 0 0; font-size: clamp(17px, 2vw, 21px); font-weight: 500; min-height: 1.6em; color: var(--muted); }
-  .typer b { color: var(--ink); font-weight: 600; }
-  .caret { display: inline-block; width: 2px; height: 1em; background: var(--c1); vertical-align: -0.12em; margin-left: 3px; animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: center; }
-
-  .avatar { position: relative; width: clamp(150px, 20vw, 220px); aspect-ratio: 1; max-width: 100%; }
-  .avatar::before {
-    content: ""; position: absolute; inset: -8px; border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--c1), var(--c2), var(--c4), var(--c3), var(--c1));
-    animation: spin 14s linear infinite;
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  .hero h1 mark {
+    color: inherit; padding: 0 .06em;
+    background: linear-gradient(transparent 58%, var(--hl) 58%, var(--hl) 92%, transparent 92%);
   }
-  .avatar svg { position: relative; width: 100%; height: 100%; display: block; animation: bob 6s ease-in-out infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @keyframes bob { 50% { translate: 0 -6px; } }
+  .lede { margin: 28px 0 0; max-width: 32em; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.75; color: var(--muted); }
+  .lede b { color: var(--ink); font-weight: 600; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+
+  /* 실제 프로젝트 화면 3장 */
+  .hero-shots { position: relative; height: clamp(380px, 38vw, 480px); }
+  .hs {
+    position: absolute; top: 50%; left: 50%; width: 44%; aspect-ratio: .5;
+    padding: 5px; border-radius: 28px; background: #10131f;
+    box-shadow: 0 30px 60px -28px rgba(15,18,40,.5);
+    transition: transform .6s var(--ease);
+  }
+  .hs img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 23px; background: #f4f6fb; }
+  .hs span {
+    position: absolute; left: 50%; bottom: -30px; translate: -50% 0; white-space: nowrap;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--muted);
+  }
+  .hs.h1 { transform: translate(-112%, -46%) rotate(-7deg); }
+  .hs.h2 { transform: translate(-50%, -54%); z-index: 2; }
+  .hs.h3 { transform: translate(12%, -46%) rotate(7deg); }
+  .hs:hover { z-index: 3; }
+  .hs.h1:hover { transform: translate(-112%, -50%) rotate(-4deg); }
+  .hs.h2:hover { transform: translate(-50%, -58%); }
+  .hs.h3:hover { transform: translate(12%, -50%) rotate(4deg); }
+  .hs.h1 span { rotate: 7deg; } .hs.h3 span { rotate: -7deg; }
 
   .hero-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
   .pill-btn {
@@ -190,11 +182,6 @@
   }
   .pill-btn:hover { border-color: var(--ink); }
   .pill-btn.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); position: relative; }
-  .pill-btn.solid::after {
-    content: ""; position: absolute; inset: -1px; z-index: -1; border-radius: inherit;
-    background: var(--grad); background-size: 250% 100%; animation: flow 6s linear infinite;
-    filter: blur(14px); opacity: 0.45;
-  }
   .pill-btn svg { width: 16px; height: 16px; fill: currentColor; }
   .hero-meta { display: flex; flex-wrap: wrap; gap: 12px 40px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
   .hero-meta div { display: flex; flex-direction: column; gap: 4px; }
@@ -488,8 +475,9 @@
     .brand span { display: none; }
     .case { grid-template-columns: minmax(0, 1fr); gap: 20px; }
     .about { grid-template-columns: minmax(0, 1fr); }
-    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
-    .avatar { order: -1; width: 120px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .hero-shots { height: 330px; max-width: 400px; width: 100%; margin: 0 auto 8px; }
+    .hs { width: 38%; border-radius: 22px; padding: 4px; } .hs img { border-radius: 18px; }
     .item { grid-template-columns: minmax(0, 1fr) auto; }
     .item p { grid-column: 1 / -1; grid-row: 2; }
     .visual { aspect-ratio: 4 / 3; }
@@ -539,15 +527,14 @@
 
 <main class="page" id="top">
   <section class="hero">
-    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="hero-grid">
       <div>
-        <p class="hello"><span class="dot"></span><span id="hello"></span></p>
+        <p class="eyebrow mono" id="eyebrow"></p>
         <h1 id="headline"></h1>
-        <p class="typer" aria-live="polite"><span id="typed"></span><span class="caret"></span></p>
+        <p class="lede" id="lede"></p>
         <div class="hero-links" id="heroLinks"></div>
       </div>
-      <div class="avatar" id="avatar" role="img" aria-label="이지윤 캐릭터 일러스트"></div>
+      <div class="hero-shots" id="heroShots"></div>
     </div>
     <div class="hero-meta" id="heroMeta"></div>
   </section>
@@ -611,11 +598,16 @@
     name: "이지윤",
     role: "UI/UX Design · Frontend",
     github: "https://github.com/puremion-rgb",
-    hello: "안녕하세요, 이지윤입니다.",
-    headline:
-      '사용자의 불편에서 출발해 <span class="soft">화면을 설계하고,</span> <span class="grad-text">코드로 완성합니다.</span>',
-    typing: ["AI와 대화하는 여행 플래너를", "실시간 카페 좌석 지도를", "감정을 읽는 독서 일기를", "쓰기 편한 화면을"],
-    typingTail: "만듭니다.",
+    eyebrow: ["UI/UX Design", "Frontend", "2026 Portfolio"],
+    headline: "<mark>불편한 순간</mark>을<br>화면으로 풀고,<br>코드로 완성합니다.",
+    lede:
+      "안녕하세요, 디자인과 프론트엔드를 함께 하는 <b>이지윤</b>입니다. 카페에 가기 전 빈자리 확인, 말 한마디로 바뀌는 여행 동선, 감정으로 정리되는 독서 기록처럼 직접 겪은 불편에서 출발한 서비스를 기획부터 배포까지 만들어 왔어요.",
+    /* 히어로 오른쪽에 보여 줄 실제 화면 3장 [왼쪽, 가운데, 오른쪽] */
+    heroShots: [
+      { src: "cafeon-splash.webp", name: "CafeON" },
+      { src: "path-splash.webp", name: "PATH" },
+      { src: "mood-home.webp", name: "MoodBook" },
+    ],
     heroMeta: [
       { k: "Now", v: "영진직업전문학교 UI/UX · 웹앱 과정" },
       { k: "Stack", v: "React · Next.js · TypeScript" },
@@ -835,47 +827,18 @@
   const finePointer = matchMedia("(pointer: fine)").matches;
 
   /* ---------- 히어로 ---------- */
-  $("hello").textContent = DATA.hello;
+  $("eyebrow").innerHTML = DATA.eyebrow.map((t) => `<span>${esc(t)}</span>`).join("");
   $("headline").innerHTML = DATA.headline;
+  $("lede").innerHTML = DATA.lede;
+  $("heroShots").innerHTML = DATA.heroShots
+    .map((h, k) => `<a class="hs h${k + 1}" href="#work" aria-label="${esc(h.name)} 프로젝트로 이동"><img src="${esc(h.src)}" alt="${esc(h.name)} 화면"></a>`)
+    .join("");
   const GH =
     '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
   $("navGh").href = DATA.github;
   $("heroLinks").innerHTML =
-    `<a class="pill-btn solid mag" href="#work">프로젝트 보기 ↓</a><a class="pill-btn mag" href="${esc(DATA.github)}" target="_blank" rel="noopener">${GH}GitHub</a><a class="pill-btn mag" href="#contact">연락하기</a>`;
+    `<a class="pill-btn solid mag" href="#work">프로젝트 보기</a><a class="pill-btn mag" href="${esc(DATA.github)}" target="_blank" rel="noopener">${GH}GitHub</a><a class="pill-btn mag" href="#contact">연락하기</a>`;
 
-  (function typer() {
-    const el = $("typed");
-    const show = (word) => (el.innerHTML = `<b>${esc(word)}</b> ${esc(DATA.typingTail)}`);
-    show(DATA.typing[0]);
-    if (reduce) return;
-    let w = 0, i = DATA.typing[0].length, del = false;
-    setTimeout(function tick() {
-      const word = DATA.typing[w];
-      i += del ? -1 : 1;
-      show(word.slice(0, i));
-      let wait = del ? 35 : 90;
-      if (!del && i >= word.length) { del = true; wait = 1900; }
-      else if (del && i <= 0) { del = false; w = (w + 1) % DATA.typing.length; wait = 300; }
-      setTimeout(tick, wait);
-    }, 2400);
-  })();
-
-  /* 캐릭터 일러스트 (직접 그린 SVG, 색은 여기서 바꿀 수 있어요) */
-  $("avatar").innerHTML = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="100" cy="100" r="100" fill="#dfe6ff"/>
-  <clipPath id="av"><circle cx="100" cy="100" r="100"/></clipPath>
-  <g clip-path="url(#av)">
-    <path d="M38 200c4-34 30-52 62-52s58 18 62 52z" fill="#2d5bff"/>
-    <path d="M86 146h28v14c0 8-28 8-28 0z" fill="#f2c9ad"/>
-    <path d="M100 150c-8 0-14-3-14-3v6c4 3 9 4 14 4s10-1 14-4v-6s-6 3-14 3z" fill="#e3b597"/>
-    <path d="M52 92c0-34 21-54 48-54s48 20 48 54c0 22-4 44-10 54H62c-6-10-10-32-10-54z" fill="#2a2230"/>
-    <ellipse cx="100" cy="98" rx="36" ry="42" fill="#f7d6bd"/>
-    <path d="M62 86c6-26 22-36 40-36 20 0 34 12 38 34-14-2-30-8-40-20-8 12-22 20-38 22z" fill="#2a2230"/>
-    <circle cx="86" cy="100" r="3.6" fill="#2a2230"/><circle cx="114" cy="100" r="3.6" fill="#2a2230"/>
-    <path d="M92 118c5 4 11 4 16 0" stroke="#c9765e" stroke-width="3" fill="none" stroke-linecap="round"/>
-    <ellipse cx="76" cy="112" rx="6" ry="3.5" fill="#f5a9a0" opacity=".6"/><ellipse cx="124" cy="112" rx="6" ry="3.5" fill="#f5a9a0" opacity=".6"/>
-    <path d="M70 188h60l6-24H64z" fill="#e8ecf5"/><rect x="92" y="172" width="16" height="4" rx="2" fill="#b7c0d6"/>
-  </g></svg>`;
   $("heroMeta").innerHTML = DATA.heroMeta
     .map((m) => `<div><span class="mono">${esc(m.k)}</span><b>${esc(m.v)}</b></div>`)
     .join("");
